@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focus Buddy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-CGQMdlXz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-kg-IODmQ.css">
+  </head>
+  <body>
+    <div id="app" class="app-container">
+      <div class="glass-panel">
+        <header>
+          <h1>Focus Buddy</h1>
+          <p class="subtitle">Your privacy-first study companion</p>
+        </header>
+
+        <div class="status-container">
+          <div id="status-indicator" class="status-indicator offline"></div>
+          <span id="status-text">Ready to focus?</span>
+        </div>
+
+        <div class="controls">
+          <button id="start-btn" class="primary-btn">Start Focus Session</button>
+          <button id="stop-btn" class="danger-btn hidden">Stop Session</button>
+        </div>
+
+        <div class="settings">
+          <label class="toggle-switch">
+            <input type="checkbox" id="silent-mode-toggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="setting-label">Silent Mode (Visual alerts only for drowsiness)</span>
+        </div>
+        
+        <div class="video-container hidden">
+          <video id="webcam" autoplay playsinline></video>
+          <canvas id="output_canvas"></canvas>
+        </div>
+      </div>
+      
+      <!-- Visual Flash for Silent Mode -->
+      <div id="visual-alert" class="visual-alert hidden">
+        <div class="alert-content">
+          <h1>WAKE UP!</h1>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>

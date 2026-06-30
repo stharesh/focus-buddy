@@ -54,6 +54,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   
   startBtn.addEventListener('click', async () => {
+    // 0. Unlock audio on iOS by interacting during this click event
+    alertSystem.initialize();
+    
     startBtn.disabled = true;
     statusIndicator.className = 'status-indicator loading';
     statusText.innerText = 'Requesting Camera...';

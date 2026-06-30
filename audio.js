@@ -5,6 +5,17 @@ export class AudioAlerts {
     this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
 
+  initialize() {
+    // Unlock AudioContext and SpeechSynthesis on iOS by firing during user gesture
+    if (this.audioCtx.state === 'suspended') {
+      this.audioCtx.resume();
+    }
+    
+    const unlockSpeech = new SpeechSynthesisUtterance('');
+    unlockSpeech.volume = 0;
+    this.synth.speak(unlockSpeech);
+  }
+
   playVoice(text) {
     if (this.synth.speaking) {
       console.log('Already speaking...');

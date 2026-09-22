@@ -266,7 +266,6 @@ The model/runtime assets required by the application are loaded from external CD
 
 Screenshots below document the application running through the live deployment.
 
-> Screenshot assets are being added to the repository separately.
 
 ### Focus Buddy Interface
 

@@ -1,8 +1,8 @@
 # Focus Buddy
 
-**Focus Buddy** is an AI-assisted, browser-based computer-vision application that uses webcam input to detect drowsiness, face touching, and distracting objects in real time.
+**Focus Buddy** is an AI-assisted, browser-based focus companion. During a focus session, it uses webcam input to notice prolonged eye closure, hand-to-face contact, and objects held in hand, then gives visual or voice feedback.
 
-The application runs the computer-vision pipeline in the browser using **MediaPipe, TensorFlow.js, and COCO-SSD**, then applies custom detection logic and a state machine to trigger visual and voice feedback during a focus session.
+The experience is designed around a privacy-first idea: webcam processing happens in the browser rather than being sent to an application backend. The application uses browser-based computer-vision tools to turn camera frames into real-time focus feedback.
 
 **Live Demo:** https://focus-buddy-nine.vercel.app/
 
@@ -13,6 +13,32 @@ The application runs the computer-vision pipeline in the browser using **MediaPi
 ## Overview
 
 Focus Buddy was built around a simple problem: **how can a browser application help someone stay focused without sending webcam footage to a backend for processing?**
+
+## Focus-session workflow
+
+```text
+Start a session
+      ↓
+Allow webcam access in the browser
+      ↓
+Focus Buddy observes three attention-related signals
+      ↓
+The signal must persist long enough to avoid reacting to momentary noise
+      ↓
+Visual or voice feedback is shown during the session
+      ↓
+Session event counters update in real time
+      ↓
+End the session and release the webcam
+```
+
+The three user-facing signals are:
+
+- **Prolonged eye closure** as a drowsiness signal
+- **Hand-to-face contact** as a potential distraction signal
+- **Objects held in hand** as a possible off-task signal
+
+The result is a real-time browser application that turns webcam frames into actionable focus feedback while keeping the session on the user’s device.
 
 The application combines multiple computer-vision signals:
 
@@ -41,7 +67,7 @@ MediaPipe hand and face landmarks are used together to determine whether a hand 
 
 The application uses a short debounce threshold so brief detection noise does not immediately trigger repeated alerts.
 
-### Distracting Object Detection
+### Object-in-Hand Detection
 
 The application combines:
 
@@ -49,7 +75,7 @@ The application combines:
 - **MediaPipe hand landmarks**
 - **Bounding-box intersection**
 
-When a detected object overlaps with a tracked hand, the application can classify it as an object being held and trigger a distraction alert.
+When a detected object overlaps with a tracked hand, the application treats it as an object being held and can trigger a distraction alert. This is a practical heuristic, not a claim that every detected object is inherently distracting.
 
 ### Real-Time Session Dashboard
 
@@ -67,7 +93,7 @@ Silent Mode replaces the drowsiness voice alert with a visual warning, making th
 
 ---
 
-## Computer Vision Pipeline
+## How the experience works
 
 ```text
                     Webcam
@@ -120,7 +146,7 @@ Silent Mode replaces the drowsiness voice alert with a visual warning, making th
 
 ---
 
-## Engineering Highlights
+## Supporting implementation
 
 | Problem | Implementation |
 |---|---|
@@ -138,7 +164,7 @@ Silent Mode replaces the drowsiness voice alert with a visual warning, making th
 
 ---
 
-## Detection State Machine
+## Alert behavior
 
 A key part of the application is the separation between **computer-vision detection** and **user-facing alert logic**.
 
@@ -168,7 +194,7 @@ This separation keeps the computer-vision layer focused on **detection** while t
 
 ---
 
-## Architecture
+## Application structure
 
 The application is divided into small browser-side modules.
 
@@ -218,7 +244,9 @@ Provides browser-based audio feedback using:
 
 ---
 
-## Technology Stack
+## Technology stack
+
+The stack below supports the product experience; this repository focuses on the user workflow and observed behavior rather than claiming ownership of every underlying model or library implementation.
 
 ### Frontend
 
@@ -293,13 +321,13 @@ COCO-SSD identifies objects in the camera feed while the application combines ob
 
 ---
 
-## Development Approach
+## AI-assisted development approach
 
-Focus Buddy was developed using an **AI-assisted / vibe-coding workflow**.
+Focus Buddy was developed using an **AI-assisted development workflow**.
 
-AI tools were used extensively throughout development to generate and iterate on the application. The resulting implementation was then tested and refined around the actual browser behavior, computer-vision pipeline, detection thresholds, state management, alerts, and user experience.
+AI tools were used extensively to generate and iterate on the application. Product ownership focused on defining the focus-session behavior, guiding the interaction design, testing the application in the browser, and refining the alerts, thresholds, and user experience around observed behavior.
 
-This project demonstrates an approach to building an AI-enabled product by combining **AI-assisted software development with hands-on validation and iteration**.
+This project demonstrates an approach to building an AI-enabled product through **AI-assisted development, hands-on validation, and iterative product decisions**.
 
 ---
 
@@ -375,6 +403,7 @@ focus-buddy/
 +-- detector.js
 +-- audio.js
 +-- style.css
++-- Focus_Buddy_PRD_v3.md
 +-- package.json
 +-- README.md
 +-- screenshots/

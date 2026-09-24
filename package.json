@@ -1,7 +1,7 @@
 {
-  "name": "focus_web_app",
+  "name": "focus-buddy",
   "version": "1.0.0",
-  "description": "",
+  "description": "Privacy-first browser focus companion with real-time webcam feedback.",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "type": "commonjs",
   "devDependencies": {
     "vite": "^8.1.1"
